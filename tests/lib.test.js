@@ -54,3 +54,23 @@ describe('registerUser', () =>{
   })
 })
  
+describe("fizzBuzz", () => {
+  it('should reject if input is not a number',() => {
+    expect(() => {lib.fizzBuzz("3")}).toThrow()
+    expect(() => {lib.fizzBuzz(null)}).toThrow()
+    expect(() => {lib.fizzBuzz(undefined)}).toThrow()
+    expect(() => {lib.fizzBuzz({})}).toThrow()
+  })
+  it('should return fizzbuzz if it can be divisible by both 5 and 3', ()=>{
+    const result = lib.fizzBuzz(15)
+    expect(result).toEqual('Fizzbuzz')
+  })
+  it('should return Fizz if it can only be divisible by 3', ()=>{
+    const result = lib.fizzBuzz(3)
+    expect(result).toEqual('Fizz')
+  })
+  it('should return Buzz if it can only be divisible by 5', ()=>{
+    const result = lib.fizzBuzz(5)
+    expect(result).toEqual('Buzz')
+  })
+})

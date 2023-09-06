@@ -24,3 +24,19 @@ module.exports.registerUser = function(username){
   if (!username) throw new Error('username is required')
   return {id: new Date().getTime(), username : username}
 }
+
+module.exports.fizzBuzz = function(input){
+  if(typeof input !== 'number')
+  throw new Error('input should be a number')
+
+  if ((input % 3 === 0) && (input % 5 === 0))
+  return 'Fizzbuzz'
+
+  if (input % 3 === 0)
+  return 'Fizz'
+
+  if (input % 5 === 0)
+  return 'Buzz'
+
+  return input
+}
