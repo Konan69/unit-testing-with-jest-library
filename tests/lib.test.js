@@ -1,3 +1,4 @@
+const db= require('../db')
 const lib = require('../lib')
 
 describe('absolute', ()=> {
@@ -32,7 +33,7 @@ describe('getCurrencies', () =>{
   })
 })
 
-describe('getProduct', () =>{
+describe('getProduct', () =>{  
   it('should return product with given id', () =>{
     const result = lib.getProduct(1)
     expect(result).toMatchObject({id: 1, price: 10})
@@ -74,3 +75,17 @@ describe("fizzBuzz", () => {
     expect(result).toEqual('Buzz')
   })
 })
+
+describe('applyDiscount', ()=> {
+  it('should apply a 10% discount if customer has more than 10 points', () => {
+  db.getCustomerSync = function(customerId) {
+      console.log('fake reading customer')
+      return {id:customerId, points:20}
+    }
+    const order = {customerId: 1, totalPrice: 10}
+    lib.applyDiscount(order)
+    expect(order.totalPrice).toBe(9)
+    
+}) 
+})
+  
