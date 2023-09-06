@@ -92,17 +92,11 @@ describe('applyDiscount', ()=> {
 
 describe('notifyCustomer', () =>{
   it('should send an email to customer', ()=>{
-    db.getCustomerSync = function(customerId){
-      return {email:'user email'}
-    }
-
-    let mailSent = false
-    mail.send = function(email, message){
-      mailSent =true
-    }
+    db.getCustomerSync = jest.fn().mockReturnValue({email:'user email'})
+    mail.send = jest.fn()
 
     lib.notifyCustomer({ customerId: 1})
 
-    expect(mailSent).toBe(true)
+    expect(mail.send).toHaveBeenCalled()
   })
 })
